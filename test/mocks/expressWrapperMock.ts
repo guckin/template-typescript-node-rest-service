@@ -1,4 +1,4 @@
-import {WrapsHttpFramework} from '../../src/expressWrapper';
+import {WrapsHttpFramework} from '../../src/interfaces/wrapsHttpFramework';
 
 export class HttpFrameworkWrapperMock implements WrapsHttpFramework {
     start = jest.fn();

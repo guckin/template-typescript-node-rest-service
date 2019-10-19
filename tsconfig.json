@@ -5,10 +5,12 @@
     "noImplicitAny": true,
     "outDir": "build",
     "sourceMap": true,
-    "target": "es2016",
-    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "types": ["reflect-metadata", "jest"],
     "experimentalDecorators": true,
-    "resolveJsonModule": true
+    "emitDecoratorMetadata": true
   },
   "include": [
     "src/**/*.ts",
