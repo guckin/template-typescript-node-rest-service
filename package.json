@@ -10,7 +10,8 @@
     "prebuild": "rm -rf build",
     "test": "jest --config ./jest.config.json",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --config ./jest.config.json",
-    "pretest:debug": "npm run build"
+    "pretest:debug": "npm run build",
+    "test:watch": "jest --config ./jest.config.json --watchAll"
   },
   "author": "Stephen McGuckin",
   "license": "ISC",
