@@ -8,4 +8,8 @@ export class ExpressWrapper implements WrapsHttpFramework {
         console.log('started');
         // TODO: do something
     }
+
+    registerRouting(routes: any) {
+        // TODO
+    }
 }
