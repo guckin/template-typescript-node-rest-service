@@ -1,4 +1,6 @@
+import {HandlesRouting} from './handlesRouting';
+
 export interface WrapsHttpFramework {
     start(): void;
-    registerRouting(routes: any): void;
+    registerRoute(route: HandlesRouting): void;
 }

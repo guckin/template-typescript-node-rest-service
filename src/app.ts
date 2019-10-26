@@ -1,8 +1,9 @@
 import {WrapsHttpFramework} from './interfaces/wrapsHttpFramework';
 import {inject, injectable} from 'inversify';
 import {TYPES} from './interfaces/types';
-import 'reflect-metadata';
 import {RegistersAppRouting} from './interfaces/registersAppRouting';
+import 'reflect-metadata';
+
 
 @injectable()
 export class App {
@@ -15,7 +16,7 @@ export class App {
     ) {}
 
     start() {
-        this.httpFrameworkWrapper.registerRouting(
+        this.httpFrameworkWrapper.registerRoute(
             this.appRouting.registeredRoutes()
         );
         this.httpFrameworkWrapper.start();

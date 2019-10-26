@@ -24,7 +24,7 @@ describe('App', () => {
     });
 
     function expectRoutesRegistered() {
-        expect(httpFrameworkWrapper.registerRouting.mock.calls[0][0]).toBe(mockRoutes);
+        expect(httpFrameworkWrapper.registerRoute.mock.calls[0][0]).toBe(mockRoutes);
     }
 
     function expectAppStarted() {

@@ -6,11 +6,17 @@ import {WrapsHttpFramework} from './interfaces/wrapsHttpFramework';
 import {ExpressWrapper} from './expressWrapper';
 import {RegistersAppRouting} from './interfaces/registersAppRouting';
 import {AppRouting} from './appRouting';
+import {AdaptsExpressObjects} from './interfaces/adaptsExpressObjects';
+import {ExpressAdapter} from './expressAdapter';
+import {ProvidesExpressApplication} from './interfaces/providesExpressApplication';
+import {ExpressProvider} from './expressProvider';
 
 const container = new Container();
 
 container.bind<AppInterface>(TYPES.AppInterface).to(App);
 container.bind<WrapsHttpFramework>(TYPES.WrapsHttpFramework).to(ExpressWrapper);
 container.bind<RegistersAppRouting>(TYPES.RegistersAppRouting).to(AppRouting);
+container.bind<ProvidesExpressApplication>(TYPES.ProvidesExpressApplication).to(ExpressProvider);
+container.bind<AdaptsExpressObjects>(TYPES.AdaptsExpressObjects).to(ExpressAdapter);
 
 export const DiContainer = container;

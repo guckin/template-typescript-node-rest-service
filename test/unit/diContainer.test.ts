@@ -3,6 +3,8 @@ import {TYPES} from '../../src/interfaces/types';
 import {App} from '../../src/app';
 import {ExpressWrapper} from '../../src/expressWrapper';
 import {AppRouting} from '../../src/appRouting';
+import {ExpressProvider} from '../../src/expressProvider';
+import {ExpressAdapter} from '../../src/expressAdapter';
 
 describe('DiContainer', () => {
 
@@ -10,6 +12,8 @@ describe('DiContainer', () => {
         IsRegistered(TYPES.AppInterface, App);
         IsRegistered(TYPES.WrapsHttpFramework, ExpressWrapper);
         IsRegistered(TYPES.RegistersAppRouting, AppRouting);
+        IsRegistered(TYPES.ProvidesExpressApplication, ExpressProvider);
+        IsRegistered(TYPES.AdaptsExpressObjects, ExpressAdapter);
     });
 
     function IsRegistered(injectionToken: any, concreteType: any) {
