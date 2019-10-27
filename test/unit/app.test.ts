@@ -1,17 +1,18 @@
 import {App} from '../../src/app';
 import {HttpFrameworkWrapperMock} from '../mocks/expressWrapperMock';
 import {AppRoutingMock} from '../mocks/appRoutingMock';
+import {HandlesRouting} from '../../src/interfaces/handlesRouting';
 
 describe('App', () => {
     let httpFrameworkWrapper: HttpFrameworkWrapperMock;
     let routing: AppRoutingMock;
-    let mockRoutes: any;
+    let mockRoutes: HandlesRouting[];
     let app: App;
 
     beforeEach(() => {
         httpFrameworkWrapper = new HttpFrameworkWrapperMock();
         routing = new AppRoutingMock();
-        mockRoutes = [];
+        mockRoutes = [{}, {}, {}] as HandlesRouting[];
         routing.registeredRoutes.mockReturnValue(mockRoutes);
         app = new App(httpFrameworkWrapper, routing);
     });
@@ -24,8 +25,11 @@ describe('App', () => {
     });
 
     function expectRoutesRegistered() {
-        expect(httpFrameworkWrapper.registerRoute.mock.calls[0][0]).toBe(mockRoutes);
+        httpFrameworkWrapper.registerRoute.mock.calls.forEach((call, index) => {
+            expect(call[0]).toBe(mockRoutes[index]);
+        });
     }
+
 
     function expectAppStarted() {
         expect(httpFrameworkWrapper.start).toHaveBeenCalled();

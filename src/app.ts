@@ -3,6 +3,7 @@ import {inject, injectable} from 'inversify';
 import {TYPES} from './interfaces/types';
 import {RegistersAppRouting} from './interfaces/registersAppRouting';
 import 'reflect-metadata';
+import {HandlesRouting} from './interfaces/handlesRouting';
 
 
 @injectable()
@@ -16,9 +17,9 @@ export class App {
     ) {}
 
     start() {
-        this.httpFrameworkWrapper.registerRoute(
-            this.appRouting.registeredRoutes()
-        );
+        this.appRouting.registeredRoutes().forEach((route: HandlesRouting) => {
+            this.httpFrameworkWrapper.registerRoute(route);
+        });
         this.httpFrameworkWrapper.start();
     }
 }
