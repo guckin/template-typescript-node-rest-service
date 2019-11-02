@@ -6,6 +6,6 @@ export class ExpressHttpResponseWrapper implements HttpResponse {
     constructor(private readonly response: ExpressResponse) {}
 
     send(content: any): void {
-
+        this.response.send(content);
     }
 }

@@ -1,6 +1,6 @@
 import {ExpressHttpRequestWrapper} from '../../src/expressHttpRequestWrapper';
 import {ExpressRequestMock} from '../mocks/expressRequestMock';
-import {Request as ExpressRequest} from 'express'
+import {Request as ExpressRequest} from 'express';
 
 describe('ExpressHttpRequestWrapper', () => {
 
