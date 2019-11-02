@@ -1,11 +1,11 @@
 import {RegistersAppRouting} from './interfaces/registersAppRouting';
 import {injectable} from 'inversify';
 import 'reflect-metadata';
+import {HandlesRouting} from './interfaces/handlesRouting';
 
 @injectable()
 export class AppRouting implements RegistersAppRouting {
-    registeredRoutes(): any {
-        // TODO
-        return null;
+    registeredRoutes(): HandlesRouting[] {
+        return undefined;
     }
 }
