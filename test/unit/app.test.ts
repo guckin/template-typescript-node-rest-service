@@ -1,6 +1,5 @@
 import {App} from '../../src/app';
 import {HttpFrameworkWrapperMock} from '../mocks/expressWrapperMock';
-import {AppRoutingMock} from '../mocks/appRoutingMock';
 import {HandlesRouting} from '../../src/interfaces/handlesRouting';
 
 describe('App', () => {
