@@ -5,6 +5,7 @@ import {ExpressWrapper} from '../../src/expressWrapper';
 import {AppRouting} from '../../src/appRouting';
 import {ExpressProvider} from '../../src/expressProvider';
 import {ExpressAdapter} from '../../src/expressAdapter';
+import {Logger} from '../../src/logger';
 
 describe('DiContainer', () => {
 
@@ -14,6 +15,7 @@ describe('DiContainer', () => {
         IsRegistered(TYPES.RegistersAppRouting, AppRouting);
         IsRegistered(TYPES.ProvidesExpressApplication, ExpressProvider);
         IsRegistered(TYPES.AdaptsExpressObjects, ExpressAdapter);
+        IsRegistered(TYPES.CanLogMessages, Logger);
     });
 
     function IsRegistered(injectionToken: any, concreteType: any) {

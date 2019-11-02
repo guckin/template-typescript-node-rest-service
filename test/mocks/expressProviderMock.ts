@@ -6,6 +6,9 @@ export class ExpressMock {
     delete = jest.fn();
     patch = jest.fn();
     put = jest.fn();
+    listen = jest.fn((_: any, cb: any) => {
+        cb();
+    });
 }
 
 export class ExpressProviderMock implements ProvidesExpressApplication {

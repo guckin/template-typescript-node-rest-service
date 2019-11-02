@@ -3,6 +3,8 @@ import {ExpressWrapper} from '../../src/expressWrapper';
 import {HandlesRouting, HttpRequest, HttpResponse, HttpVerb} from '../../src/interfaces/handlesRouting';
 import {Request as ExpressRequest, Response as ExpressResponse} from 'express';
 import {ExpressAdapterMock} from '../mocks/expressAdapterMock';
+import {CanLogMessages} from '../../src/interfaces/logger';
+import {LoggerMock} from '../mocks/loggerMock';
 
 describe('ExpressWrapper', () => {
     let expressMock: ExpressMock;
@@ -14,6 +16,7 @@ describe('ExpressWrapper', () => {
     let actualPath: string;
     let actualRequest: HttpRequest;
     let actualResponse: HttpResponse;
+    let logger: CanLogMessages;
 
     const expectedPath = '/path';
     const expectedRequest = {} as HttpRequest;
@@ -23,7 +26,8 @@ describe('ExpressWrapper', () => {
         expressMock = new ExpressMock();
         expressProviderMock = new ExpressProviderMock(expressMock);
         expressAdapterMock = new ExpressAdapterMock();
-        expressWrapper = new ExpressWrapper(expressProviderMock, expressAdapterMock);
+        logger = new LoggerMock;
+        expressWrapper = new ExpressWrapper(expressProviderMock, expressAdapterMock, logger);
         requestMock = {} as ExpressRequest;
         expressResponseMock = {} as ExpressResponse;
     });
@@ -36,7 +40,7 @@ describe('ExpressWrapper', () => {
         HttpVerb.PUT
     ].forEach((verb) => {
         it(`Registers ${verb} route`, () => {
-            setupExpressMock();
+            setupExpressMockForRouting();
             setUpAdapterMock();
 
             expressWrapper.registerRoute(createSingleHandler(verb));
@@ -47,7 +51,17 @@ describe('ExpressWrapper', () => {
         });
     });
 
-    function setupExpressMock() {
+    it('starts up the express App', () => {
+        const port = 1992;
+        const message = '🏃running...';
+
+        expressWrapper.start({port, message});
+
+        expect(expressMock.listen.mock.calls[0][0]).toEqual(port);
+        expect(logger.log).toBeCalledWith(message);
+    });
+
+    function setupExpressMockForRouting() {
          const routeImpl = (path: any, cb: any) => {
              actualPath = path;
              cb(requestMock, expressResponseMock);

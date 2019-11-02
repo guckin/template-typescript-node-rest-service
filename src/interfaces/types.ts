@@ -6,5 +6,6 @@ export const TYPES = {
     AppInterface: Symbol('AppInterface'),
     RegistersAppRouting: Symbol('RegistersAppRouting'),
     ProvidesExpressApplication: Symbol('ProvidesExpressApplication'),
-    AdaptsExpressObjects: Symbol('AdaptsExpressObjects')
+    AdaptsExpressObjects: Symbol('AdaptsExpressObjects'),
+    CanLogMessages: Symbol('CanLogMessages')
 };
