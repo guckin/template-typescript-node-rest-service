@@ -2,7 +2,7 @@ import {HandlesRouting} from './handlesRouting';
 
 export interface ApplicationStartConfiguration {
     port: number;
-    message: string;
+    serverInitMessage: string;
 }
 
 export interface WrapsHttpFramework {

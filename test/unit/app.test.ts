@@ -8,6 +8,7 @@ describe('App', () => {
     let routing: AppRoutingMock;
     let mockRoutes: HandlesRouting[];
     let app: App;
+    const config: any = {};
 
     beforeEach(() => {
         httpFrameworkWrapper = new HttpFrameworkWrapperMock();
@@ -18,7 +19,7 @@ describe('App', () => {
     });
 
     it('Starts the server', () => {
-        app.start();
+        app.start(config);
 
         expectAppStarted();
         expectRoutesRegistered();
@@ -30,8 +31,7 @@ describe('App', () => {
         });
     }
 
-
     function expectAppStarted() {
-        expect(httpFrameworkWrapper.start).toHaveBeenCalled();
+        expect(httpFrameworkWrapper.start).toHaveBeenCalledWith(config);
     }
 });

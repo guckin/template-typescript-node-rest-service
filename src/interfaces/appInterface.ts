@@ -1,3 +1,5 @@
+import {ApplicationStartConfiguration} from './wrapsHttpFramework';
+
 export interface AppInterface {
-    start(): void;
+    start(config: ApplicationStartConfiguration): void;
 }
