@@ -8,12 +8,10 @@ export enum HttpVerb {
 
 export type Path = string;
 
-// tslint:disable-next-line:no-empty-interface
 export interface HttpRequest {
     body: any;
 }
 
-// tslint:disable-next-line:no-empty-interface
 export interface HttpResponse {
     send(content: any): void;
 }
