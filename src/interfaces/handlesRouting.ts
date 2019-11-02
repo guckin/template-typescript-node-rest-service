@@ -21,3 +21,5 @@ export interface HandlesRouting {
     path: Path;
     handler: (req: HttpRequest, res: HttpResponse) => void;
 }
+
+export type RoutingHandlers = HandlesRouting[];

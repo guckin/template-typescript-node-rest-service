@@ -1,11 +1,7 @@
-import {RegistersAppRouting} from './interfaces/registersAppRouting';
-import {injectable} from 'inversify';
 import 'reflect-metadata';
-import {HandlesRouting} from './interfaces/handlesRouting';
+import {RoutingHandlers} from './interfaces/handlesRouting';
+import {HealthCheckRoute} from './healthCheckRoute';
 
-@injectable()
-export class AppRouting implements RegistersAppRouting {
-    registeredRoutes(): HandlesRouting[] {
-        return undefined;
-    }
-}
+export const AppRouting: RoutingHandlers = [
+    new HealthCheckRoute()
+];

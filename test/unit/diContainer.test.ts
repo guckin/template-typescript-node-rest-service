@@ -10,16 +10,22 @@ import {Logger} from '../../src/logger';
 describe('DiContainer', () => {
 
     it('Has injectable classes registered to it', () => {
-        IsRegistered(TYPES.AppInterface, App);
-        IsRegistered(TYPES.WrapsHttpFramework, ExpressWrapper);
-        IsRegistered(TYPES.RegistersAppRouting, AppRouting);
-        IsRegistered(TYPES.ProvidesExpressApplication, ExpressProvider);
-        IsRegistered(TYPES.AdaptsExpressObjects, ExpressAdapter);
-        IsRegistered(TYPES.CanLogMessages, Logger);
+        isRegistered(TYPES.AppInterface, App);
+        isRegistered(TYPES.WrapsHttpFramework, ExpressWrapper);
+        isRegistered(TYPES.ProvidesExpressApplication, ExpressProvider);
+        isRegistered(TYPES.AdaptsExpressObjects, ExpressAdapter);
+        isRegistered(TYPES.CanLogMessages, Logger);
+
+        constantIsRegistered(TYPES.RoutingHandlers, AppRouting);
     });
 
-    function IsRegistered(injectionToken: any, concreteType: any) {
+    function isRegistered(injectionToken: symbol, concreteType: any) {
         const obj = DiContainer.get(injectionToken);
         expect(obj).toBeInstanceOf(concreteType);
+    }
+
+    function constantIsRegistered(injectionToken: symbol, constant: any) {
+        const obj = DiContainer.get(injectionToken);
+        expect(obj).toBe(constant);
     }
 });

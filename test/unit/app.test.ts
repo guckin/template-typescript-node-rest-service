@@ -5,17 +5,14 @@ import {HandlesRouting} from '../../src/interfaces/handlesRouting';
 
 describe('App', () => {
     let httpFrameworkWrapper: HttpFrameworkWrapperMock;
-    let routing: AppRoutingMock;
     let mockRoutes: HandlesRouting[];
     let app: App;
     const config: any = {};
 
     beforeEach(() => {
         httpFrameworkWrapper = new HttpFrameworkWrapperMock();
-        routing = new AppRoutingMock();
         mockRoutes = [{}, {}, {}] as HandlesRouting[];
-        routing.registeredRoutes.mockReturnValue(mockRoutes);
-        app = new App(httpFrameworkWrapper, routing);
+        app = new App(httpFrameworkWrapper, mockRoutes);
     });
 
     it('Starts the server', () => {
