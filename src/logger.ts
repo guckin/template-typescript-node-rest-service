@@ -5,6 +5,6 @@ import 'reflect-metadata';
 @injectable()
 export class Logger implements CanLogMessages {
     log(...args: any[]): void {
-        // TODO: Implement
+        console.log(...args);
     }
 }
