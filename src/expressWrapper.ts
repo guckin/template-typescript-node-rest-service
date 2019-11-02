@@ -34,9 +34,9 @@ export class ExpressWrapper implements WrapsHttpFramework {
         });
     }
 
-    start({port, message}: ApplicationStartConfiguration): void {
+    start({port, serverInitMessage}: ApplicationStartConfiguration): void {
         this.app.listen(port, () => {
-            this.logger.log(message);
+            this.logger.log(serverInitMessage);
         });
     }
 }

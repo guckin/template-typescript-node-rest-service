@@ -53,12 +53,12 @@ describe('ExpressWrapper', () => {
 
     it('starts up the express App', () => {
         const port = 1992;
-        const message = '🏃running...';
+        const serverInitMessage = '🏃running...';
 
-        expressWrapper.start({port, message});
+        expressWrapper.start({port, serverInitMessage});
 
         expect(expressMock.listen.mock.calls[0][0]).toEqual(port);
-        expect(logger.log).toBeCalledWith(message);
+        expect(logger.log).toBeCalledWith(serverInitMessage);
     });
 
     function setupExpressMockForRouting() {
