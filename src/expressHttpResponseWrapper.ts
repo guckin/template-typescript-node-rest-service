@@ -1,5 +1,5 @@
 import {Response as ExpressResponse} from 'express';
-import {HttpResponse} from './handlesRouting';
+import {HttpResponse} from './interfaces/handlesRouting';
 
 export class ExpressHttpResponseWrapper implements HttpResponse {
 

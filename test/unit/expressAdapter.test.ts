@@ -1,7 +1,7 @@
 import {ExpressAdapter} from '../../src/expressAdapter';
 import {Request as ExpressRequest, Response as ExpressResponse} from 'express';
 import {ExpressHttpRequestWrapper} from '../../src/expressHttpRequestWrapper';
-import {ExpressHttpResponseWrapper} from '../../src/interfaces/expressHttpResponseWrapper';
+import {ExpressHttpResponseWrapper} from '../../src/expressHttpResponseWrapper';
 import {HttpRequest, HttpResponse} from '../../src/interfaces/handlesRouting';
 
 describe('ExpressAdapter',  () => {

@@ -4,7 +4,7 @@ import {Request as ExpressRequest, Response as ExpressResponse} from 'express';
 import {injectable} from 'inversify';
 import 'reflect-metadata';
 import {ExpressHttpRequestWrapper} from './expressHttpRequestWrapper';
-import {ExpressHttpResponseWrapper} from './interfaces/expressHttpResponseWrapper';
+import {ExpressHttpResponseWrapper} from './expressHttpResponseWrapper';
 
 @injectable()
 export class ExpressAdapter implements AdaptsExpressObjects {
