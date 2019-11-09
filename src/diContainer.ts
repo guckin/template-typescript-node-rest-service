@@ -13,7 +13,9 @@ import {CanLogMessages} from './interfaces/logger';
 import {Logger} from './logger';
 import {RoutingHandlers} from './interfaces/handlesRouting';
 import {HandlesAuthentication} from './interfaces/handlesAuthentication';
-import {AuthService} from '../test/unit/authService';
+import {AuthService} from './services/authService';
+import {ValidatesTokens} from './interfaces/validatesTokens';
+import {JwtValidatorService} from './services/jwtValidatorService';
 
 const container = new Container();
 
@@ -24,5 +26,6 @@ container.bind<ProvidesExpressApplication>(TYPES.ProvidesExpressApplication).to(
 container.bind<AdaptsExpressObjects>(TYPES.AdaptsExpressObjects).to(ExpressAdapter);
 container.bind<CanLogMessages>(TYPES.CanLogMessages).to(Logger);
 container.bind<HandlesAuthentication>(TYPES.HandlesAuthentication).to(AuthService);
+container.bind<ValidatesTokens>(TYPES.ValidatesToken).to(JwtValidatorService);
 
 export const DiContainer = container;

@@ -8,5 +8,6 @@ export const TYPES = {
     ProvidesExpressApplication: Symbol('ProvidesExpressApplication'),
     AdaptsExpressObjects: Symbol('AdaptsExpressObjects'),
     CanLogMessages: Symbol('CanLogMessages'),
-    HandlesAuthentication: Symbol('HandlesAuthentication')
+    HandlesAuthentication: Symbol('HandlesAuthentication'),
+    ValidatesToken: Symbol('ValidatesToken')
 };

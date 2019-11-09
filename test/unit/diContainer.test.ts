@@ -6,7 +6,8 @@ import {AppRouting} from '../../src/appRouting';
 import {ExpressProvider} from '../../src/expressProvider';
 import {ExpressAdapter} from '../../src/expressAdapter';
 import {Logger} from '../../src/logger';
-import {AuthService} from './authService';
+import {AuthService} from '../../src/services/authService';
+import {JwtValidatorService} from '../../src/services/jwtValidatorService';
 
 describe('DiContainer', () => {
 
@@ -17,6 +18,7 @@ describe('DiContainer', () => {
         isRegistered(TYPES.AdaptsExpressObjects, ExpressAdapter);
         isRegistered(TYPES.CanLogMessages, Logger);
         isRegistered(TYPES.HandlesAuthentication, AuthService);
+        isRegistered(TYPES.ValidatesToken, JwtValidatorService);
 
         constantIsRegistered(TYPES.RoutingHandlers, AppRouting);
     });
