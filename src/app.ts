@@ -5,7 +5,6 @@ import 'reflect-metadata';
 import {HandlesRouting, RoutingHandlers} from './interfaces/handlesRouting';
 import {AppInterface} from './interfaces/appInterface';
 
-
 @injectable()
 export class App implements AppInterface {
 

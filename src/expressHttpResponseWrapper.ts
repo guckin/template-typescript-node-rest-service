@@ -8,4 +8,8 @@ export class ExpressHttpResponseWrapper implements HttpResponse {
     send(content: any): void {
         this.response.send(content);
     }
+
+    status(code: number): void {
+        this.response.status(code);
+    }
 }

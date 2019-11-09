@@ -14,6 +14,7 @@ export interface HttpRequest {
 
 export interface HttpResponse {
     send(content: any): void;
+    status(code: number): void;
 }
 
 export interface HandlesRouting {
