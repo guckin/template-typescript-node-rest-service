@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "rm -rf build coverage",
     "start": "node build/src/index.js",
+    "start:debug":  "node --inspect-brk build/src/index.js",
     "build": "tsc",
     "prebuild": "rm -rf build",
     "test": "jest --config ./jest.config.json",
