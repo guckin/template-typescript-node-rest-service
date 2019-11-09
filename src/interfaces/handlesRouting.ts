@@ -18,6 +18,7 @@ export interface HttpResponse {
 }
 
 export interface HandlesRouting {
+    authenticated?: boolean;
     verb: HttpVerb;
     path: Path;
     handler: (req: HttpRequest, res: HttpResponse) => void;

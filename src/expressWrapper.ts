@@ -7,6 +7,7 @@ import {AdaptsExpressObjects} from './interfaces/adaptsExpressObjects';
 import {ProvidesExpressApplication} from './interfaces/providesExpressApplication';
 import {TYPES} from './interfaces/types';
 import {CanLogMessages} from './interfaces/logger';
+import {HandlesAuthentication} from './interfaces/handlesAuthentication';
 
 
 @injectable()
@@ -20,17 +21,21 @@ export class ExpressWrapper implements WrapsHttpFramework {
         @inject(TYPES.AdaptsExpressObjects)
         private readonly expressAdapter: AdaptsExpressObjects,
         @inject(TYPES.CanLogMessages)
-        private readonly logger: CanLogMessages
+        private readonly logger: CanLogMessages,
+        @inject(TYPES.HandlesAuthentication)
+        private readonly authService: HandlesAuthentication
     ) {
         this.app = expressAppFactory.getApp();
     }
 
     registerRoute(route: HandlesRouting) {
         this.app[route.verb](route.path, (req, res) => {
-            route.handler(
-                this.expressAdapter.adaptRequest(req),
-                this.expressAdapter.adaptResponse(res)
-            );
+            const request = this.expressAdapter.adaptRequest(req);
+            const response = this.expressAdapter.adaptResponse(res);
+            if (route.authenticated) {
+                this.authService.authenticationHandler(request, response);
+            }
+            route.handler(request, response);
         });
     }
 

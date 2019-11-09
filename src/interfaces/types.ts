@@ -7,5 +7,6 @@ export const TYPES = {
     RoutingHandlers: Symbol('RoutingHandlers'),
     ProvidesExpressApplication: Symbol('ProvidesExpressApplication'),
     AdaptsExpressObjects: Symbol('AdaptsExpressObjects'),
-    CanLogMessages: Symbol('CanLogMessages')
+    CanLogMessages: Symbol('CanLogMessages'),
+    HandlesAuthentication: Symbol('HandlesAuthentication')
 };
