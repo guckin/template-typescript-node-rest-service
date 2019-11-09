@@ -26,7 +26,6 @@ export class ExpressWrapper implements WrapsHttpFramework {
     }
 
     registerRoute(route: HandlesRouting) {
-        debugger;
         this.app[route.verb](route.path, (req, res) => {
             route.handler(
                 this.expressAdapter.adaptRequest(req),
