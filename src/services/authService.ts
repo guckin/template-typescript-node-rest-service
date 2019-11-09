@@ -16,4 +16,8 @@ export class AuthService implements HandlesAuthentication {
     authenticationHandler(request: HttpRequest, response: HttpResponse) {
 
     }
+
+    isAuthenticated(): boolean {
+        return undefined;
+    }
 }

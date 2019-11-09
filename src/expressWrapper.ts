@@ -35,7 +35,7 @@ export class ExpressWrapper implements WrapsHttpFramework {
             if (route.authenticated) {
                 this.authService.authenticationHandler(request, response);
             }
-            route.handler(request, response);
+            route.routeCallback(request, response);
         });
     }
 

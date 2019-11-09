@@ -21,7 +21,9 @@ export interface HandlesRouting {
     authenticated?: boolean;
     verb: HttpVerb;
     path: Path;
-    handler: (req: HttpRequest, res: HttpResponse) => void;
+    routeCallback: RouteCallback;
 }
+
+export type RouteCallback = (req: HttpRequest, res: HttpResponse) => void;
 
 export type RoutingHandlers = HandlesRouting[];

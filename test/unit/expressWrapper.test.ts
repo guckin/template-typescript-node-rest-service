@@ -112,7 +112,7 @@ describe('ExpressWrapper', () => {
             authenticated: true,
             path: '/authorizedEndpoint',
             verb: HttpVerb.GET,
-            handler: (_req: HttpRequest, _res: HttpResponse) => undefined
+            routeCallback: (_req: HttpRequest, _res: HttpResponse) => undefined
         };
     }
 
@@ -121,13 +121,13 @@ describe('ExpressWrapper', () => {
             authenticated: false,
             path: '/unAuthorizedEndpoint',
             verb: HttpVerb.GET,
-            handler: (_req: HttpRequest, _res: HttpResponse) => undefined
+            routeCallback: (_req: HttpRequest, _res: HttpResponse) => undefined
         };
     }
 
     function createSingleHandler(verb: HttpVerb): HandlesRouting {
         return {
-            handler: (req: HttpRequest, res: HttpResponse) => {
+            routeCallback: (req: HttpRequest, res: HttpResponse) => {
                 actualRequest = req;
                 actualResponse = res;
             },
