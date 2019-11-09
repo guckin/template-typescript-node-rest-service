@@ -3,7 +3,7 @@ import {HandlesRouting, HttpRequest, HttpResponse, HttpVerb, Path} from '../inte
 export class HealthCheckRoute implements HandlesRouting {
     path: Path = '/health';
     verb: HttpVerb = HttpVerb.GET;
-    handler(req: HttpRequest, res: HttpResponse) {
+    routeCallback(req: HttpRequest, res: HttpResponse) {
         res.status(200);
         res.send('👌');
     }

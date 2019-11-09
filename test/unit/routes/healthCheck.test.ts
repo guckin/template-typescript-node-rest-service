@@ -15,7 +15,7 @@ describe('HealthCheckRoute', () => {
         const route = new HealthCheckRoute();
         const responseMock = new HttpResponseMock();
 
-        route.handler(null, responseMock);
+        route.routeCallback(null, responseMock);
 
         expect(responseMock.send).toBeCalledWith('👌');
         expect(responseMock.status).toBeCalledWith(200);

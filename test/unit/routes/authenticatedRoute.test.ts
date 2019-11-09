@@ -1,0 +1,5 @@
+describe('AuthenticatedRoute', () => {
+    it('TODO', () => {
+
+    });
+});
