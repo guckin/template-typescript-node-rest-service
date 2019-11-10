@@ -5,8 +5,6 @@ import {Request as ExpressRequest, Response as ExpressResponse} from 'express';
 import {ExpressAdapterMock} from '../mocks/expressAdapterMock';
 import {CanLogMessages} from '../../src/interfaces/logger';
 import {LoggerMock} from '../mocks/loggerMock';
-import {HandlesAuthentication} from '../../src/interfaces/handlesAuthentication';
-import {AuthServiceMock} from '../mocks/authServiceMock';
 
 describe('ExpressWrapper', () => {
     let expressMock: ExpressMock;
@@ -19,7 +17,6 @@ describe('ExpressWrapper', () => {
     let actualRequest: HttpRequest;
     let actualResponse: HttpResponse;
     let logger: CanLogMessages;
-    let authService: HandlesAuthentication;
 
     const expectedPath = '/path';
     const expectedRequest = {} as HttpRequest;
@@ -29,9 +26,8 @@ describe('ExpressWrapper', () => {
         expressMock = new ExpressMock();
         expressProviderMock = new ExpressProviderMock(expressMock);
         expressAdapterMock = new ExpressAdapterMock();
-        authService = new AuthServiceMock();
         logger = new LoggerMock;
-        expressWrapper = new ExpressWrapper(expressProviderMock, expressAdapterMock, logger, authService);
+        expressWrapper = new ExpressWrapper(expressProviderMock, expressAdapterMock, logger);
         requestMock = {} as ExpressRequest;
         expressResponseMock = {} as ExpressResponse;
         setupExpressMockForRouting();
@@ -64,18 +60,6 @@ describe('ExpressWrapper', () => {
         expect(logger.log).toBeCalledWith(serverInitMessage);
     });
 
-    it('handles authenticated routes', () => {
-        expressWrapper.registerRoute(createAuthenticatedHandler());
-
-        expect(authService.authenticationHandler).toBeCalledWith(expectedRequest, expectedResponse);
-    });
-
-    it('handles unauthenticated routes', () => {
-        expressWrapper.registerRoute(createUnAuthenticatedHandler());
-
-        expect(authService.authenticationHandler).not.toBeCalled();
-    });
-
     function setupExpressMockForRouting() {
          const routeImpl = (path: any, cb: any) => {
              actualPath = path;
@@ -105,24 +89,6 @@ describe('ExpressWrapper', () => {
 
     function expectCorrectPathPassed() {
         expect(actualPath).toEqual(expectedPath);
-    }
-
-    function createAuthenticatedHandler(): HandlesRouting {
-        return {
-            authenticated: true,
-            path: '/authorizedEndpoint',
-            verb: HttpVerb.GET,
-            routeCallback: (_req: HttpRequest, _res: HttpResponse) => undefined
-        };
-    }
-
-    function createUnAuthenticatedHandler(): HandlesRouting {
-        return {
-            authenticated: false,
-            path: '/unAuthorizedEndpoint',
-            verb: HttpVerb.GET,
-            routeCallback: (_req: HttpRequest, _res: HttpResponse) => undefined
-        };
     }
 
     function createSingleHandler(verb: HttpVerb): HandlesRouting {

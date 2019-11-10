@@ -1,4 +1,4 @@
-import {HandlesRouting} from './handlesRouting';
+import {HandlesRouting, HttpVerb, Path, RouteCallback} from './handlesRouting';
 
 export interface ApplicationStartConfiguration {
     port: number;
@@ -7,5 +7,5 @@ export interface ApplicationStartConfiguration {
 
 export interface WrapsHttpFramework {
     start(config: ApplicationStartConfiguration): void;
-    registerRoute(route: HandlesRouting): void;
+    registerRoute(routeHandler: HandlesRouting): void;
 }

@@ -1,12 +1,7 @@
-import {RouteCallback, HandlesRouting, HttpRequest, HttpResponse, HttpVerb} from '../interfaces/handlesRouting';
-import {HttpFrameworkWrapperMock} from '../../test/mocks/expressWrapperMock';
-import {AuthHandler} from '../interfaces/authHandler';
-import {RoutingService} from '../../test/unit/services/routingService';
-
-
-class AuthHandlerServiceMock implements AuthHandler {
-    authHandler = jest.fn();
-}
+import {HandlesRouting, HttpRequest, HttpResponse, HttpVerb, RouteCallback} from '../../../src/interfaces/handlesRouting';
+import {HttpFrameworkWrapperMock} from '../../mocks/expressWrapperMock';
+import {RoutingService} from '../../../src/services/routingService';
+import {AuthHandlerServiceMock} from '../../mocks/authHandlerServiceMock';
 
 describe('RoutingService', () => {
 
@@ -25,7 +20,11 @@ describe('RoutingService', () => {
 
         routingService.registerRoute(handler);
 
-        expect(httpFrameworkWrapper.registerRoute).toHaveBeenCalledWith(handler.verb, handler.path, expect.any(Function));
+        expect(httpFrameworkWrapper.registerRoute).toHaveBeenCalledWith({
+            verb: handler.verb,
+            path: handler.path,
+            routeCallback: expect.any(Function)
+        });
         expectRouteToBeUnAuthenticated();
         expectRoutingHandlerCalled(handler);
     });
@@ -35,7 +34,11 @@ describe('RoutingService', () => {
 
         routingService.registerRoute(handler);
 
-        expect(httpFrameworkWrapper.registerRoute).toHaveBeenCalledWith(handler.verb, handler.path, expect.any(Function));
+        expect(httpFrameworkWrapper.registerRoute).toHaveBeenCalledWith({
+            verb: handler.verb,
+            path: handler.path,
+            routeCallback: expect.any(Function)
+        });
         expectRoutingHandlerCalled(handler);
         expectRouteToBeAuthenticated();
     });
@@ -65,7 +68,7 @@ describe('RoutingService', () => {
     }
 
     function getHandler(): RouteCallback {
-        return httpFrameworkWrapper.registerRoute.mock.calls[0][2];
+        return httpFrameworkWrapper.registerRoute.mock.calls[0][0].routeCallback;
     }
 
     function createAuthenticatedHandler(): HandlesRouting {

@@ -1,6 +1,6 @@
-import {RoutingServiceInterface} from '../../../src/interfaces/RoutingServiceInterface';
-import {AuthHandler} from '../../../src/interfaces/authHandler';
-import {HandlesRouting, HttpRequest, HttpResponse} from '../../../src/interfaces/handlesRouting';
+import {RoutingServiceInterface} from '../interfaces/RoutingServiceInterface';
+import {AuthHandler} from '../interfaces/authHandler';
+import {HandlesRouting, HttpRequest, HttpResponse} from '../interfaces/handlesRouting';
 
 export class RoutingService implements RoutingServiceInterface {
     constructor(
@@ -16,6 +16,10 @@ export class RoutingService implements RoutingServiceInterface {
             }
             handler.routeCallback(request, response);
         };
-        this.httpFrameworkWrapper.registerRoute(handler.verb, handler.path, newRouteHandler);
+        this.httpFrameworkWrapper.registerRoute({
+            verb: handler.verb,
+            path: handler.path,
+            routeCallback: newRouteHandler
+        });
     }
 }
