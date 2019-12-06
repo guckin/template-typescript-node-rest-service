@@ -3,7 +3,6 @@ import {inject, injectable} from 'inversify';
 import 'reflect-metadata';
 import {ValidatesTokens} from '../interfaces/validatesTokens';
 import {TYPES} from '../interfaces/types';
-import {HttpRequest} from '../interfaces/handlesRouting';
 
 @injectable()
 export class AuthService implements HandlesAuthentication {
@@ -13,7 +12,7 @@ export class AuthService implements HandlesAuthentication {
         private readonly validator: ValidatesTokens
     ) {}
 
-    isAuthenticated(request: HttpRequest): boolean {
+    isAuthenticated(token: string): boolean {
         return undefined;
     }
 }

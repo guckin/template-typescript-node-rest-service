@@ -10,6 +10,7 @@ export type Path = string;
 
 export interface HttpRequest {
     body: any;
+    headers: any;
 }
 
 export interface HttpResponse {
