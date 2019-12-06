@@ -1,11 +1,12 @@
 import {RoutingServiceInterface} from '../interfaces/RoutingServiceInterface';
 import {AuthHandler} from '../interfaces/authHandler';
 import {HandlesRouting, HttpRequest, HttpResponse} from '../interfaces/handlesRouting';
+import {WrapsHttpFramework} from '../interfaces/wrapsHttpFramework';
 
 export class RoutingService implements RoutingServiceInterface {
     constructor(
         private readonly authHandlerService: AuthHandler,
-        private readonly httpFrameworkWrapper: any // TODO
+        private readonly httpFrameworkWrapper: WrapsHttpFramework
     ) {
     }
 
