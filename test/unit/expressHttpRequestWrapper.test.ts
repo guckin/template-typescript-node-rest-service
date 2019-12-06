@@ -13,13 +13,19 @@ describe('ExpressHttpRequestWrapper', () => {
     });
 
     it('Puts data in the request body', () => {
-        const bodyData = '🦐';
-        expressRequestMock().bodyMock.mockReturnValue(bodyData);
+        expressRequestMock().body = '🦐';
 
-        const result = httpRequest.body();
+        const result = httpRequest.body;
 
-        expect(expressRequestMock().bodyMock).toBeCalled();
-        expect(result).toEqual(bodyData);
+        expect(result).toEqual(expressRequestMock().body);
+    });
+
+    it('Its matches the headers on the request', () => {
+        expressRequestMock().headers = {some: 'value'};
+
+        const result = httpRequest.headers;
+
+        expect(result).toEqual(expressRequestMock().headers);
     });
 
     function expressRequestMock(): ExpressRequestMock {

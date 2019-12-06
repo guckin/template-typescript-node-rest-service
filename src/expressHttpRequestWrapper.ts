@@ -5,7 +5,11 @@ export class ExpressHttpRequestWrapper implements HttpRequest {
 
     constructor(private readonly request: ExpressRequest) {}
 
-    body(): any {
+    get body(): any {
         return this.request.body;
+    }
+
+    get headers(): any {
+        return this.request.headers;
     }
 }
